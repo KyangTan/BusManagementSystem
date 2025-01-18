@@ -38,6 +38,15 @@ A Spring Boot-based RESTful API service for managing bus operations, routes, and
   - Driver assignment
   - Trip status tracking
 
+- **Trip Record Management**
+  - Record actual trip details
+  - Track driver performance
+  - Monitor route adherence
+  - Record passenger counts
+  - Track departure/arrival times
+  - Support for real-time updates
+  - Historical trip data analysis
+
 - **Polyline Plot Management**
   - Store and manage route polylines
   - Validate polyline data format
@@ -126,6 +135,15 @@ mvn spring-boot:run
 - PUT /api/route-stop/{id} - Update route stop
 - DELETE /api/route-stop/{id} - Delete route stop
 
+### Trip Record Management Endpoints
+- GET /api/trip-records - Get all trip records
+- GET /api/trip-records/{id} - Get trip record by ID
+- POST /api/trip-records - Create new trip record (accessible by DRIVER)
+- PUT /api/trip-records/{id} - Update trip record
+- DELETE /api/trip-records/{id} - Delete trip record
+- GET /api/trip-records/driver/{driverId} - Get driver's trip records
+- GET /api/trip-records/route/{routeId} - Get route's trip records
+
 ### Polyline Plot Management Endpoints
 - GET /api/polyline-plot - Get all polyline plots
 - GET /api/polyline-plot/{id} - Get polyline plot by ID
@@ -136,7 +154,10 @@ mvn spring-boot:run
 ## Security
 
 - All POST, PUT, and DELETE operations require an ADMIN role
-- The DRIVER role can only create trip records
+- The DRIVER role can only:
+  - Create trip records
+  - Update their own trip records
+  - View their assigned trips
 - All GET operations are accessible to authenticated users
 - Authentication token required for all protected endpoints
 
